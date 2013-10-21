@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+	<article id="projectDetail">
+		{% block content %} {% endblock %}
+	</article>
+	<p><img class="backArrow" alt="Back Arrow" src="/images/Back-Arrow.png" />&nbsp;<a href="/portfolio"><strong>Back to portfolio</strong></a></p>
+	<script src="/js/craftyslide.min.js"></script>
+	<script>
+		$("#slideshow").craftyslide({
+			'width': 580,
+			'height': 580,
+			'pagination': true,
+		});
+	</script>
+{% endblock %}

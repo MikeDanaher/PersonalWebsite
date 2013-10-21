@@ -1,0 +1,26 @@
+{% extends "projectDetail.html" %}
+{% block content %}
+	<h2>Personal Profile</h2>
+	<div id="slideshow">
+		<ul>
+			<li>
+				<img src="/images/ProfileOnHome.jpg" title="Entrance to personal profile from My Home Page" />
+			</li>    
+			<li>
+				<img src="/images/ProfilePersonal.jpg" title="First profile screen with personal info tab selected" />
+			</li>    
+			<li>           
+				<img src="/images/ProfileEducation.jpg" title="Education info tab selected" />
+			</li>
+			<li>           
+				<img src="/images/ProfileEdit.jpg" title="Form for editing business profile information" />
+			</li>
+			<li>           
+				<img src="/images/ProfilePreferences.jpg" title="Screen for seeing and editing profile preferences" />
+			</li>				
+		</ul>
+	</div>
+	<h3>Details</h3>
+	<p>One of the main drivers for creating a login area on our website was to give our constituents a place to see the information we have for them on file and to submit updates. This helps our staff keep current records and gives our constituents an easy way to check on their information without contacting the organization.</p>
+	<p>Unfortunately, our website database and our CRM database are separate systems. In order for this information to remain in sync, updates need to be passed between both systems. And, since our web CMS wasn't specifically built for robust personal profiles, we had to create many custom fields to hold all this information. Everything had been working well, but is so tightly coupled that any future changes will be tedious and error prone. I would love to rebuild both a CMS and CRM in one system enabling rich user experiences for both staff and constituents</p>
+{% endblock %}

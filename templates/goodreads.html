@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+	<article id="goodreads">
+	<h2>Goodreads</h2>
+	<p>I've always been a fan of a good book, but I never made time to read. Then I discovered Audible. With an hour long commute to work, I can listen to a book in a little over a week. Traffic doesn't bother me as much anymore.</p>	  
+	<h3>Currently Reading</h3>  	  
+    <div id="gr_grid_widget_1373045104"></div>
+    <script src="http://www.goodreads.com/review/grid_widget/20098610.Mike's%20currently-reading%20book%20montage?cover_size=medium&hide_link=true&hide_title=true&num_books=20&order=a&shelf=currently-reading&sort=date_added&widget_id=1373045104" type="text/javascript" charset="utf-8"></script>
+	<h3>Past Reads</h3>
+    <div id="gr_grid_widget_1373037993"></div>
+	<p>&nbsp;</p>
+      <script src="http://www.goodreads.com/review/grid_widget/20098610.Mike's%20bookshelf:%20read?cover_size=medium&hide_link=&hide_title=true&num_books=200&order=d&shelf=read&sort=date_read&widget_id=1373037993" type="text/javascript" charset="utf-8"></script>
+	</article>
+{% endblock %}

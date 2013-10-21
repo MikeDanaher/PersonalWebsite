@@ -1,0 +1,24 @@
+{% extends "projectDetail.html" %}
+{% block content %}
+	<h2>Dynamic Login Home Page</h2>
+	<div id="slideshow">
+		<ul>
+			<li>
+				<img src="/images/MyHomePage-Staff1.jpg" title="Top of Home Page View for a Staff Member" />
+			</li>    
+			<li>
+				<img src="/images/MyHomePage-Staff2.jpg" title="Bottom of Home Page View for a Staff Member" />
+			</li>    
+			<li>           
+				<img src="/images/MyHomePage-Alumni.jpg" title="Home Page View for an Alum" />
+			</li>
+			<li>           
+				<img src="/images/MyHomePage-Applicant.jpg" title="Home Page View for a Scholarship Applicant" />
+			</li>				
+		</ul>
+	</div>
+	<h3>Details</h3>
+	<p>When designing this page, I had to take into consideration the fact that several different groups would be accessing this page. Each group was to see different content; however, some users could fall into more than one group. Therefore, to create this page, I needed to make every item dynamic. If you were supposed to see something, it would appear. Otherwise, it wouldn't even get rendered when the page loaded.</p>
+	<p>To ensure that items appeared correctly, I had to create a hierarchy of users. Content for users higher in the stack was rendered first. Unfortunately, because of the limitations of the CMS there is a good amount of duplication. If content is only slightly different (say a link to other content) I had to create a completely new content box. This makes it difficult when content changes.</p>
+	<p>Overall, the performance is pretty good and so far all users are seeing just the content they should. It's been a great tool to give specific content to specific users without having to create many different duplicate pages</p>
+{% endblock %}

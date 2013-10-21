@@ -1,0 +1,273 @@
+/* Resets and Overrides */
+header, section, footer, aside, nav, article, figure
+{ 
+	display: block; 
+}
+
+/* Layout Styles */
+html {
+	background-image: url('/images/furley_bg.png');
+}
+body{
+	font-size:16px;
+	color:#555;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#leftColumn {
+	position: fixed;
+	top: 12%;
+	width: 33%;
+}
+
+#rightContainer {
+	position: absolute;
+	left: 37%;
+	width: 660px;
+	height: 93%;
+	margin-top: 50px;
+	background-color: rgba(255,255,255,.9);	
+}
+
+#rightColumn {
+	padding: 2em 2em 4em 2em;
+	background-color: rgba(255,255,255,.9);
+}
+.leftColAlignment {
+	float: right;
+	clear: both;
+	text-align: right;
+}
+
+footer {
+	text-align: center;
+	font-size: .8em;
+	padding-top: 20px;
+	clear: both;
+}
+
+#headShot {
+	background: url('/images/Mike-HeadShot-BlueChecker.jpg') no-repeat;
+	width: 150px;
+	height: 205px;
+	border-radius: .4em;
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+}
+
+/* Portfolio */
+.projectBox {
+	clear: both;
+	padding: 1em 0;
+	border-top: 1px dotted #bbb;
+}
+
+.projectBox a:hover {
+	display: block;
+	background: rgba(240,240,240,.6);
+	color: #666;
+	height: 133px;
+}
+
+.projectBox h3 {
+	display: inline;
+}
+	
+.projectThumb {
+	float: left;
+	margin: 0 1em 1em 1em;
+	border: 2px solid #ddd;
+}
+	
+.projectSummary {
+	margin-top: 1em;
+}	
+
+/* Text Styles */
+section h2, section h3 {
+	margin-top: 0;
+	clear: both;
+}
+p {
+	line-height: 1.8em;
+}
+a:link, a:visited{
+	text-decoration: none;
+	color: #666;
+}
+a:hover{
+	color: #FF8000;
+}
+nav ul li {
+	text-transform: uppercase;
+	font-size: 1.2em;
+	list-style: none;
+	line-height: 1.4em;
+}
+
+/* Goodreads */
+.gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+}
+
+.gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 98px;
+    height: 160px;
+    padding: 0px 0px;
+    overflow: hidden;
+}
+
+/* Contact Form */
+label {
+	display: block;
+	font-size: 1.3em;
+	line-height: 2em;
+	margin: 10px 0;
+}
+
+label div {
+	width: 100px;
+	padding-right: 15px;
+	float: left;
+	text-align: right;
+}
+
+input, textarea {
+	width: 67%;
+	padding: 10px;
+	color: #555;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+textarea {
+	height: 15em;
+	padding: 10px;
+	margin-top: 7px;
+}
+
+#comments2 {display: none}
+
+input[type="submit"] {
+	font-size: 1.5em;
+	display: block;
+	font-weight: bold;
+	width: 125px;
+	float: right;
+	margin-right: 10%;
+	border: 1px solid #ddd;
+	background: #ddd;
+	border-radius: .2em;
+	-webkit-border-radius: .2em;
+	-moz-border-radius: .2em;
+	cursor: pointer;
+}
+
+.error {color: #FF8000; font-weight: bold;}
+
+.backArrow {
+	position: relative;
+	top: 4px;
+}
+
+/* Tic-Tac-Toe */
+.gameCell {
+	font-size: 9em;
+	color: #666666;
+	text-align: center;
+	text-transform: uppercase;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+#gameBoard {
+	width: 600px;
+	height: 600px;
+	margin: 0 auto;
+}
+
+.midRow {
+	border-top: 2px solid #666666;
+	border-bottom: 2px solid #666666;
+}
+
+.midCol {
+	border-left: 2px solid #666666;
+	border-right: 2px solid #666666;	
+}
+
+#gameBoard td {
+	width: 33%;
+	height: 33%;
+}
+
+#currentPlayer {
+	font-size: 1.4em;
+	text-align: center;
+	margin: 20px 0;
+	padding: 10px;
+	background: #ddd;
+	border-radius: .2em;
+	-webkit-border-radius: .2em;
+	-moz-border-radius: .2em;
+}
+
+#alert {
+	font-size: 1.5em;
+	text-align: center;
+	font-weight: bold;
+	color: #FF8000;
+	display: none;
+}
+
+#winnerBox {
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 40%;
+	padding: 2em;
+	background: white;
+	border: 2px solid #111111;
+	z-index: 20;
+}
+
+#winner {
+	font-size: 3em;
+	text-align: center;
+	color: #FF8000;
+	font-weight: bold;
+	padding: 40px 0;
+}
+
+#newGame {
+	display: block;
+	padding: 10px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.lightbox {
+	display: none;
+	background: rgba(240,240,240,0.6);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+}
+
+@media (max-width: 1100px) {
+	#leftColumn {
+		width: 25%;
+	}
+	#rightContainer {
+		left: 30%;
+		width: 65%;
+	}
+	#gameBoard {
+		width: 550px;
+		height: 550px;
+	}
+}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block body %}
+<article id="tic-tac-toe">
+<h2>Tic-Tac-Toe</h2>
+<p>Try to beat the computer in a game of Tic-Tac-Toe. When it's your turn, select an open cell.</p>
+<div id="alert"></div>
+<div id="currentPlayer"></div>
+<table id="gameBoard" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td id="tl" class="gameCell">&nbsp;</td>
+    <td id="tc" class="gameCell midCol">&nbsp;</td>
+    <td id="tr" class="gameCell">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="ml" class="gameCell midRow">&nbsp;</td>
+    <td id="mc" class="gameCell midRow midCol">&nbsp;</td>
+    <td id="mr" class="gameCell midRow">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="bl" class="gameCell">&nbsp;</td>
+    <td id="bc" class="gameCell midCol">&nbsp;</td>
+    <td id="br" class="gameCell">&nbsp;</td>
+  </tr>
+</table>
+<div id="winnerBox">
+	<div id="winner"></div>
+	<input id="newGame" type="submit" value="New Game" />
+</div>
+<div class="lightbox"></div>
+<script type="text/javascript" src="/js/ai-tic-tac-toe.js"></script>
+</article>
+{% endblock %}

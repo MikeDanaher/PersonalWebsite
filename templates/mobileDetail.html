@@ -1,0 +1,33 @@
+{% extends "projectDetail.html" %}
+{% block content %}
+	<h2>Mobile Website</h2>
+	<div id="slideshow">
+		<ul>
+			<li>
+				<img src="/images/MobileHome.jpg" title="Mobile Site Home Page" />
+			</li>    
+			<li>
+				<img src="/images/MobileNews.jpg" title="List of recent news articles" />
+			</li>    
+			<li>           
+				<img src="/images/MobileEvents.jpg" title="List of upcoming events" />
+			</li>
+			<li>           
+				<img src="/images/MobileLogin.jpg" title="Login to get to mobile search page" />
+			</li>	
+			<li>
+				<img src="/images/MobileSearchLanding.jpg" title="List of possible search groups" />
+			</li>    
+			<li>
+				<img src="/images/MobileSearch.jpg" title="Search page for Alumni" />
+			</li>    
+			<li>           
+				<img src="/images/MobileProfile.jpg" title="Profile of constituent after search" />
+			</li>		
+		</ul>
+	</div>
+	<h3>Details</h3>
+	<p>As a project for my Master's degree, I chose to design and build a mobile website to compliment our main site. Using our CMS, I created a "child" site that can pull information from our "parent" site. This is a separate site, with a separate url (mobile.wgaesf.org) and separate design, but can pull information from the main site. This is how I created the news feed and upcoming events. Using CSS I could format it to fit a mobile screen.</p>
+	<p>One of the main goals with the mobile site was to give our staff the ability to easily search the database while travelling. With this site they can login and search Alumni, Directors, Scholars, and Applicants and see all the same information they see on the main site. Now they have up to date contact information for all our constituents at their finger tips.</p>
+	<p>In the future it would be great to design a more responsive website, but the sheer amount of content available on our site will make that no easy feat. While more difficult to maintain, a separate website has worked quite well for our purposes.</p>
+{% endblock %}

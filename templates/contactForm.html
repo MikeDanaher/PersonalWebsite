@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body %}
+	<article id="contact">
+		<h2>Contact Me</h2>
+			<form method="post">
+    			<label>
+        			<div>Name</div>
+        			<input type="text" name="name" value="{{name}}"/>
+        		</label>
+    			
+				<label>
+        			<div>Email</div>
+        			<input type="text" name="email" value="{{email}}"/>
+        		</label>
+				
+        		<label>
+        			<div>Comments</div>
+        			<textarea name="comments">{{comments}}</textarea>
+        		</label>
+			
+				<input id="comments2" type="text" name="comments2" value="" alt="If you are human, leave blank" />
+        		
+				<div class="error">{{error}}</div>
+				<div class="error">{{error_email}}</div>
+        
+        		<input type="submit" value="Send"/>
+    		</form>	
+	</article>
+{% endblock %}
