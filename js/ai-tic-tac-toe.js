@@ -93,72 +93,55 @@ function tryBlock(){
 
 function tryCorners(){
 	var corners = [cells[1], cells[3], cells[5], cells[7]];
-	var total = addCells(corners);
-	switch(total){
+	var cornerTotal = addCells(corners);
+	switch(cornerTotal){
 		case 0:
-			pickCornerEmpty();
+			//Pick opposite corner in row with an 'x'
+			for(j=0; j < possibleWins.length; j++){
+				var total = addCells(possibleWins[j]);
+				if(total == 1){
+					cellChoice(possibleWins[j][0]);
+					break;
+				}	
+			}
 			break;
 		case 1:
-			pickSideEmpty();
+			//Pick the side in an empty row
+			for(j=0; j < possibleWins.length; j++){
+				var total = addCells(possibleWins[j]);
+				if(total == 0){
+					cellChoice(possibleWins[j][1]);
+					break;
+				}	
+			}
 			break;
 		case 2:
-			pickSide();
+			// Pick a random available side
+			var sides = [];
+			for(i = 0; i < availableCells.length; i++){
+				if(availableCells[i] == "tc" || availableCells[i] == "ml" || availableCells[i] == "mr" || availableCells[i] == "bc"){
+				sides.push(availableCells[i]);
+				}
+			}
+			var randomSide = Math.floor(Math.random()*sides.length);
+			cellChoice(sides[randomSide]);
 			break;
 		case 5:
-			pickCorner();
+			// Pick a random available corner
+			var corners = [];
+			for(i = 0; i < availableCells.length; i++){
+				if(availableCells[i] == "tl" || availableCells[i] == "tr" || availableCells[i] == "bl" || availableCells[i] == "br"){
+				corners.push(availableCells[i]);
+				}
+			}
+			var randomCorner = Math.floor(Math.random()*corners.length);
+			cellChoice(corners[randomCorner]);
 			break;
 		default:
-			randomMove();
+			// If no other moves, randomly choose an open cell. Shouldn't happen.
+			var randomCell = Math.floor(Math.random()*availableCells.length);
+			cellChoice(availableCells[randomCell]);
 	}
-}
-
-function pickCornerEmpty(){
-	var nextMove = 0;
-	for(j=0; j < possibleWins.length; j++){
-		var total = addCells(possibleWins[j]);
-		if(total == 1){
-			cellChoice(possibleWins[j][0]);
-			break;
-		}	
-	}
-}
-
-function pickSideEmpty(){
-	var nextMove = 0;
-	for(j=0; j < possibleWins.length; j++){
-		var total = addCells(possibleWins[j]);
-		if(total == 0){
-			cellChoice(possibleWins[j][1]);
-			break;
-		}	
-	}
-}
-
-function pickSide(){
-	var sides = [];
-	for(i = 0; i < availableCells.length; i++){
-		if(availableCells[i] == "tc" || availableCells[i] == "ml" || availableCells[i] == "mr" || availableCells[i] == "bc"){
-			sides.push(availableCells[i]);
-		}
-	}
-	var randomSide = Math.floor(Math.random()*sides.length);
-	cellChoice(sides[randomSide]);
-}
-
-function pickCorner(){
-	var corners = [];
-	for(i = 0; i < availableCells.length; i++){
-		if(availableCells[i] == "tl" || availableCells[i] == "tr" || availableCells[i] == "bl" || availableCells[i] == "br"){
-			corners.push(availableCells[i]);
-		}
-	}
-	var randomCorner = Math.floor(Math.random()*corners.length);
-	cellChoice(corners[randomCorner]);
-}
-
-function randomMove(){
-	var randomCell = Math.floor(Math.random()*availableCells.length);
-	cellChoice(availableCells[randomCell]);
 }
 
 function findNextMove(n){
