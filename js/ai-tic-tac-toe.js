@@ -7,24 +7,25 @@ $(document).ready(function() {
 	newGame();
 });
 
+// Create a global object to hold the game board and other variables
+var tictactoe = {};
+
 function newGame(){
 	$('.gameCell').html(" ");
 
-	window.cells = ["mc","tl","tc","tr","ml","bl","mr","br","bc"];
-	window.availableCells = ["mc","tl","tc","tr","ml","bl","mr","br","bc"];
-	window.playerSymbol = "x";
-	window.playerValue = 1;
-	window.moveCount = 0;
-	window.round = 1;
-	window.possibleWins = [
-		[cells[1],cells[2],cells[3]],
-		[cells[4],cells[0],cells[6]],
-		[cells[5],cells[8],cells[7]],
-		[cells[1],cells[4],cells[5]],
-		[cells[2],cells[0],cells[8]],
-		[cells[3],cells[6],cells[7]],
-		[cells[1],cells[0],cells[7]],
-		[cells[5],cells[0],cells[3]]
+	tictactoe.cells = ["mc","tl","tc","tr","ml","bl","mr","br","bc"];
+	tictactoe.availableCells = ["mc","tl","tc","tr","ml","bl","mr","br","bc"];
+	tictactoe.currentPlayer = "x";
+	tictactoe.moveCount = 0;
+	tictactoe.possibleWins = [
+		[tictactoe.cells[1],tictactoe.cells[2],tictactoe.cells[3]],
+		[tictactoe.cells[4],tictactoe.cells[0],tictactoe.cells[6]],
+		[tictactoe.cells[5],tictactoe.cells[8],tictactoe.cells[7]],
+		[tictactoe.cells[1],tictactoe.cells[4],tictactoe.cells[5]],
+		[tictactoe.cells[2],tictactoe.cells[0],tictactoe.cells[8]],
+		[tictactoe.cells[3],tictactoe.cells[6],tictactoe.cells[7]],
+		[tictactoe.cells[1],tictactoe.cells[0],tictactoe.cells[7]],
+		[tictactoe.cells[5],tictactoe.cells[0],tictactoe.cells[3]]
 		];
 
 	$('#winnerBox').hide();
@@ -44,9 +45,8 @@ function playerMove(){
 
 function computerMove(){
 
-	if(round == 1){
-		round++;
-		if(cells[0] == 1){
+	if(tictactoe.moveCount == 1){
+		if(tictactoe.cells[0] == 1){
 			pickCorner();
 		}else{
 			cellChoice("mc");
@@ -69,10 +69,10 @@ function computerMove(){
 
 function tryWin(){
 	var nextMove = 0;
-	for(j=0; j < possibleWins.length; j++){
-		var total = addCells(possibleWins[j]);
+	for(j=0; j < tictactoe.possibleWins.length; j++){
+		var total = addCells(tictactoe.possibleWins[j]);
 		if(total == 8){
-			nextMove = findNextMove(possibleWins[j]);
+			nextMove = findNextMove(tictactoe.possibleWins[j]);
 			break;
 		}	
 	}
@@ -81,10 +81,10 @@ function tryWin(){
 
 function tryBlock(){
 	var nextMove = 0;
-	for(j=0; j < possibleWins.length; j++){
-		var total = addCells(possibleWins[j]);
+	for(j=0; j < tictactoe.possibleWins.length; j++){
+		var total = addCells(tictactoe.possibleWins[j]);
 		if(total == 2){
-			nextMove = findNextMove(possibleWins[j]);
+			nextMove = findNextMove(tictactoe.possibleWins[j]);
 			break;
 		}	
 	}
@@ -92,25 +92,25 @@ function tryBlock(){
 }
 
 function tryCorners(){
-	var corners = [cells[1], cells[3], cells[5], cells[7]];
+	var corners = [tictactoe.cells[1], tictactoe.cells[3], tictactoe.cells[5], tictactoe.cells[7]];
 	var cornerTotal = addCells(corners);
 	switch(cornerTotal){
 		case 0:
-			//Pick opposite corner in row with an 'x'
-			for(j=0; j < possibleWins.length; j++){
-				var total = addCells(possibleWins[j]);
+			//Pick the first corner in row with an 'x'
+			for(j=0; j < tictactoe.possibleWins.length; j++){
+				var total = addCells(tictactoe.possibleWins[j]);
 				if(total == 1){
-					cellChoice(possibleWins[j][0]);
+					cellChoice(tictactoe.possibleWins[j][0]);
 					break;
 				}	
 			}
 			break;
 		case 1:
 			//Pick the side in an empty row
-			for(j=0; j < possibleWins.length; j++){
-				var total = addCells(possibleWins[j]);
+			for(j=0; j < tictactoe.possibleWins.length; j++){
+				var total = addCells(tictactoe.possibleWins[j]);
 				if(total == 0){
-					cellChoice(possibleWins[j][1]);
+					cellChoice(tictactoe.possibleWins[j][1]);
 					break;
 				}	
 			}
@@ -118,9 +118,9 @@ function tryCorners(){
 		case 2:
 			// Pick a random available side
 			var sides = [];
-			for(i = 0; i < availableCells.length; i++){
-				if(availableCells[i] == "tc" || availableCells[i] == "ml" || availableCells[i] == "mr" || availableCells[i] == "bc"){
-				sides.push(availableCells[i]);
+			for(i = 0; i < tictactoe.availableCells.length; i++){
+				if(tictactoe.availableCells[i] == "tc" || tictactoe.availableCells[i] == "ml" || tictactoe.availableCells[i] == "mr" || tictactoe.availableCells[i] == "bc"){
+					sides.push(tictactoe.availableCells[i]);
 				}
 			}
 			var randomSide = Math.floor(Math.random()*sides.length);
@@ -128,20 +128,24 @@ function tryCorners(){
 			break;
 		case 5:
 			// Pick a random available corner
-			var corners = [];
-			for(i = 0; i < availableCells.length; i++){
-				if(availableCells[i] == "tl" || availableCells[i] == "tr" || availableCells[i] == "bl" || availableCells[i] == "br"){
-				corners.push(availableCells[i]);
-				}
-			}
-			var randomCorner = Math.floor(Math.random()*corners.length);
-			cellChoice(corners[randomCorner]);
+			pickCorner();
 			break;
 		default:
-			// If no other moves, randomly choose an open cell. Shouldn't happen.
-			var randomCell = Math.floor(Math.random()*availableCells.length);
-			cellChoice(availableCells[randomCell]);
+			// If no other moves, randomly choose an open cell.
+			var randomCell = Math.floor(Math.random()*tictactoe.availableCells.length);
+			cellChoice(tictactoe.availableCells[randomCell]);
 	}
+}
+
+function pickCorner(){
+	var corners = [];
+	for(i = 0; i < tictactoe.availableCells.length; i++){
+		if(tictactoe.availableCells[i] == "tl" || tictactoe.availableCells[i] == "tr" || tictactoe.availableCells[i] == "bl" || tictactoe.availableCells[i] == "br"){
+			corners.push(tictactoe.availableCells[i]);
+		}
+	}
+	var randomCorner = Math.floor(Math.random()*corners.length);
+	cellChoice(corners[randomCorner]);
 }
 
 function findNextMove(n){
@@ -156,10 +160,14 @@ function findNextMove(n){
 }
 
 function cellChoice(c){
-	for(i = 0; i < cells.length; i++){
-		if(cells[i] == c){
-			$('#' + c).html(playerSymbol);
-			cells[i] = playerValue;
+	for(i = 0; i < tictactoe.cells.length; i++){
+		if(tictactoe.cells[i] == c){
+			$('#' + c).html(tictactoe.currentPlayer);
+			if(tictactoe.currentPlayer == 'x'){
+				tictactoe.cells[i] = 1;
+			}else{
+				tictactoe.cells[i] = 4;
+			}
 			removeCells(c);
 			break;
 		}
@@ -179,9 +187,9 @@ function addCells(row){
 }
 
 function removeCells(c){
-	for(i=0; i < availableCells.length; i++){
-		if(availableCells[i] == c){
-			availableCells.splice(i, 1);
+	for(i=0; i < tictactoe.availableCells.length; i++){
+		if(tictactoe.availableCells[i] == c){
+			tictactoe.availableCells.splice(i, 1);
 			break;
 		}
 	}
@@ -189,15 +197,15 @@ function removeCells(c){
 
 function updateWins(){
 
-	possibleWins = [
-		[cells[1],cells[2],cells[3]],
-		[cells[4],cells[0],cells[6]],
-		[cells[5],cells[8],cells[7]],
-		[cells[1],cells[4],cells[5]],
-		[cells[2],cells[0],cells[8]],
-		[cells[3],cells[6],cells[7]],
-		[cells[1],cells[0],cells[7]],
-		[cells[5],cells[0],cells[3]]
+	tictactoe.possibleWins = [
+		[tictactoe.cells[1],tictactoe.cells[2],tictactoe.cells[3]],
+		[tictactoe.cells[4],tictactoe.cells[0],tictactoe.cells[6]],
+		[tictactoe.cells[5],tictactoe.cells[8],tictactoe.cells[7]],
+		[tictactoe.cells[1],tictactoe.cells[4],tictactoe.cells[5]],
+		[tictactoe.cells[2],tictactoe.cells[0],tictactoe.cells[8]],
+		[tictactoe.cells[3],tictactoe.cells[6],tictactoe.cells[7]],
+		[tictactoe.cells[1],tictactoe.cells[0],tictactoe.cells[7]],
+		[tictactoe.cells[5],tictactoe.cells[0],tictactoe.cells[3]]
 		];
 }
 
@@ -205,8 +213,8 @@ function checkWinner(){
 	updateWins();
 	var winner = 0;
 			
-	for(j=0; j < possibleWins.length; j++){
-		var total = addCells(possibleWins[j]);
+	for(j=0; j < tictactoe.possibleWins.length; j++){
+		var total = addCells(tictactoe.possibleWins[j]);
 		
 		if(total == 3){
 			winner = 1;
@@ -217,9 +225,9 @@ function checkWinner(){
 		}	
 	}
 	
-	moveCount++;
+	tictactoe.moveCount++;
 	
-	if(moveCount == 9 || winner > 0){
+	if(tictactoe.moveCount == 9 || winner > 0){
 		endGame(winner);
 	}else{
 		switchPlayers();
@@ -227,14 +235,12 @@ function checkWinner(){
 }
 
 function switchPlayers(){
-	if(playerValue == 1){
-		playerSymbol = "o";
-		playerValue = 4;
+	if(tictactoe.currentPlayer == "x"){
+		tictactoe.currentPlayer = "o";
 		$('#currentPlayer').html("Computer's Turn");
 		setTimeout(computerMove, 1200);
 	}else{
-		playerSymbol = "x";
-		playerValue = 1;
+		tictactoe.currentPlayer = "x";
 		$('#currentPlayer').html("Your Turn");
 	}
 }
