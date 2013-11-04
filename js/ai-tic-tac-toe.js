@@ -11,30 +11,24 @@ $(document).ready(function() {
 var tictactoe = {};
 
 function newGame(){
+	//Reset visual game board
 	$('.gameCell').html(" ");
-
-	tictactoe.cells = ["mc","tl","tc","tr","ml","bl","mr","br","bc"];
-	tictactoe.currentPlayer = "x";
-	tictactoe.moveCount = 0;
-	tictactoe.possibleWins = [
-		[tictactoe.cells[1],tictactoe.cells[2],tictactoe.cells[3]],
-		[tictactoe.cells[4],tictactoe.cells[0],tictactoe.cells[6]],
-		[tictactoe.cells[5],tictactoe.cells[8],tictactoe.cells[7]],
-		[tictactoe.cells[1],tictactoe.cells[4],tictactoe.cells[5]],
-		[tictactoe.cells[2],tictactoe.cells[0],tictactoe.cells[8]],
-		[tictactoe.cells[3],tictactoe.cells[6],tictactoe.cells[7]],
-		[tictactoe.cells[1],tictactoe.cells[0],tictactoe.cells[7]],
-		[tictactoe.cells[5],tictactoe.cells[0],tictactoe.cells[3]]
-		];
-
 	$('#winnerBox').hide();
 	$('.lightbox').hide();
 	$('#currentPlayer').html("Your Turn");
+	
+	//Reset game board variables
+	tictactoe.cells = ["mc","tl","tc","tr","ml","bl","mr","br","bc"];
+	tictactoe.currentPlayer = "x";
+	tictactoe.moveCount = 0;
 }
 
 function playerMove(){
+	//Check that the user selected an open cell and that they waited until the computer moved
 	if($(this).html() == "x" || $(this).html() == "o"){
 		$('#alert').html("Please select an empty cell").show();
+	}else if(tictactoe.moveCount % 2 !== 0){
+		$('#alert').html("Please wait your turn").show();
 	}else{
 		$('#alert').hide();
 		cellChoice($(this).attr("id"));
